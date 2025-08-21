@@ -118,12 +118,12 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
+            text-align: left;
         }
 
         .selector-group label {
             color: white;
             font-weight: 500;
-            text-align: left;
         }
 
         .selector-group select {
@@ -222,7 +222,7 @@
 
         .scanner-controls {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 15px;
         }
 
@@ -900,9 +900,6 @@
                     <button id="btn-stop" class="btn btn-warning">
                         <i class="fas fa-stop"></i> Detener
                     </button>
-                    <button id="btn-switch" class="btn btn-secondary">
-                        <i class="fas fa-sync-alt"></i> Cámara
-                    </button>
                 </div>
             </div>
 
@@ -1009,748 +1006,38 @@
     <script>
         // Base de datos de estudiantes para todos los grados y secciones
         const studentsDatabase = {
-            "1A": [
-                { id: "1A-001", name: "ACEVEDO SIGUAS, CARLA BELEN", attendance: 0, history: [] },
-                { id: "1A-002", name: "ANCALLE BELITO, SERGIO JHUNIOR", attendance: 0, history: [] },
-                { id: "1A-003", name: "ARCOS FLORES, JUAN JAIR", attendance: 0, history: [] },
-                { id: "1A-004", name: "ASTO ATUNCA, MIGUEL ANGEL", attendance: 0, history: [] },
-                { id: "1A-005", name: "BERNAOLA HERRERA, KAMILA TATIANA", attendance: 0, history: [] },
-                { id: "1A-006", name: "BULEJE GERONIMO, MATEO VLADIMIR", attendance: 0, history: [] },
-                { id: "1A-007", name: "CCUITO CRUCES, GISELLE ANDREA", attendance: 0, history: [] },
-                { id: "1A-008", name: "CHOQUE ENRIQUEZ, EDER LEONEL", attendance: 0, history: [] },
-                { id: "1A-009", name: "CLAUDIO JIMENEZ, DAMILETH NATHANIELL", attendance: 0, history: [] },
-                { id: "1A-010", name: "CONTRERAS ESCOBAR, ROSMERY INES", attendance: 0, history: [] },
-                { id: "1A-011", name: "CRUZATT PAREDES, JOSUE MISAEL", attendance: 0, history: [] },
-                { id: "1A-012", name: "ESPINOZA SALGUERO, JHASURI YAMILET", attendance: 0, history: [] },
-                { id: "1A-013", name: "FALCON MUÑOZ, SAMIR GIANFRANCO", attendance: 0, history: [] },
-                { id: "1A-014", name: "FALCON NOA, DAYIRO JHAROL", attendance: 0, history: [] },
-                { id: "1A-015", name: "FLORES ARUCANQUI, FABIANNE ELIZABETH", attendance: 0, history: [] },
-                { id: "1A-016", name: "HERNANDEZ CAMACHO, DAYANA CRISTEL", attendance: 0, history: [] },
-                { id: "1A-017", name: "LARA TIPICIANO, ANTHONY MATHIAS", attendance: 0, history: [] },
-                { id: "1A-018", name: "LIMAYLLA SANCHEZ, LUCIANA ADELY", attendance: 0, history: [] },
-                { id: "1A-019", name: "LOPEZ REYES, MARIA DEL ROSARIO", attendance: 0, history: [] },
-                { id: "1A-020", name: "MALLQUI AQUINO, GEAN CARLOS DARIO", attendance: 0, history: [] },
-                { id: "1A-021", name: "MARAZA ROJAS, JUAN DAVID", attendance: 0, history: [] },
-                { id: "1A-022", name: "MARCA HERNANDEZ, KATHERINE MARITZA", attendance: 0, history: [] },
-                { id: "1A-023", name: "MEDINA RICSI, SNAIDER JIRAK", attendance: 0, history: [] },
-                { id: "1A-024", name: "MENESES CACERES, LENNY DANIL", attendance: 0, history: [] },
-                { id: "1A-025", name: "OCEDA PISCOYA, MERLI RIANA", attendance: 0, history: [] },
-                { id: "1A-026", name: "QUISPE RAMOS, MERLY FABIOLA", attendance: 0, history: [] },
-                { id: "1A-027", name: "RAMIREZ CASTRO, JILMAR EDDU", attendance: 0, history: [] },
-                { id: "1A-028", name: "RAMOS HUAMAN, NEYMAR ANDERSON", attendance: 0, history: [] },
-                { id: "1A-029", name: "RODRIGUEZ SARAVIA, SAYURI JHAMILET", attendance: 0, history: [] },
-                { id: "1A-030", name: "SEVINCHA MUNAYA, MIRIAM ABIGAIL", attendance: 0, history: [] },
-                { id: "1A-031", name: "SIGUAS FRANCO, RIHANNA YAMILETH", attendance: 0, history: [] },
-                { id: "1A-032", name: "TELLO ARTEAGA, GERONIMO DEL PIERO", attendance: 0, history: [] },
-                { id: "1A-033", name: "URIBE CUSIPUMA, LUCIA NOEMI", attendance: 0, history: [] }
-            ],
-            "1B": [
-                { id: "1B-001", name: "AGUELA ESPINO, GIAHORI YAZU", attendance: 0, history: [] },
-                { id: "1B-002", name: "ARECHE ENRIQUEZ, ROYER ANDERSON", attendance: 0, history: [] },
-                { id: "1B-003", name: "ARTEAGA SALAZAR, ANGELA MYLENN SELENE", attendance: 0, history: [] },
-                { id: "1B-004", name: "ASCONA BRAVO, ANGELES ASHLLY", attendance: 0, history: [] },
-                { id: "1B-005", name: "AYALA CAMASE, LEONEL FABIAN", attendance: 0, history: [] },
-                { id: "1B-006", name: "BRAVO HUAMAN, JESHUA ISMAEL", attendance: 0, history: [] },
-                { id: "1B-007", name: "CUADROS ASCONA, GERSON FABRICIO", attendance: 0, history: [] },
-                { id: "1B-008", name: "ESCOBAR TAIPE, LEYDI JIMENA", attendance: 0, history: [] },
-                { id: "1B-009", name: "ESQUIVEL GONZALES, ALEJANDRA GABRIELA", attendance: 0, history: [] },
-                { id: "1B-010", name: "FLORES BAUTISTA, BRIANNA OLINDA", attendance: 0, history: [] },
-                { id: "1B-011", name: "HERRERA ÑAÑEZ, JULIO IVAN", attendance: 0, history: [] },
-                { id: "1B-012", name: "HERRERA TORRES, GENESIS DE LOS ANGELES", attendance: 0, history: [] },
-                { id: "1B-013", name: "HUAMAN CHINO, MARYORI ALEXANDRA", attendance: 0, history: [] },
-                { id: "1B-014", name: "HUAMANI HERNANDEZ, JHOANS DAVID", attendance: 0, history: [] },
-                { id: "1B-015", name: "HUAUYA LOPEZ, BENJAMIN NICOLAS", attendance: 0, history: [] },
-                { id: "1B-016", name: "MEDRANO AHUANARI, GRECIA LUCIANA", attendance: 0, history: [] },
-                { id: "1B-017", name: "MENA APAZA, ANGEL DAVID", attendance: 0, history: [] },
-                { id: "1B-018", name: "MENDEZ TAMAYO, LIA LUANA", attendance: 0, history: [] },
-                { id: "1B-019", name: "MORALES ISLADO, LUCERO YASURI", attendance: 0, history: [] },
-                { id: "1B-020", name: "NAPA MARCOS, DAYIRO NICOLAS", attendance: 0, history: [] },
-                { id: "1B-021", name: "NEYRA BERROCAL, PIERE VALENTINO", attendance: 0, history: [] },
-                { id: "1B-022", name: "NOA TOMAYRO, JEMMER JAIR", attendance: 0, history: [] },
-                { id: "1B-023", name: "ÑAÑEZ ORE, GONZALO ISMAEL", attendance: 0, history: [] },
-                { id: "1B-024", name: "PAYTAN HERNANDEZ, JHONATAN ALBERTO", attendance: 0, history: [] },
-                { id: "1B-025", name: "PEÑA SANCHEZ, MARLON JHARED ISMAEL", attendance: 0, history: [] },
-                { id: "1B-026", name: "PIZARRO ENRIQUEZ, THIAGO ESTEFANO", attendance: 0, history: [] },
-                { id: "1B-027", name: "PIZARRO MENDOZA, JHEYSON BARU", attendance: 0, history: [] },
-                { id: "1B-028", name: "PIZARRO TINTAYA, JOSÈ VALENTINO", attendance: 0, history: [] },
-                { id: "1B-029", name: "SAUCEDO CORDOVA, ADRIANA SALOME", attendance: 0, history: [] },
-                { id: "1B-030", name: "URIBE TARQUI, GABRIELA AMÈRICA", attendance: 0, history: [] },
-                { id: "1B-031", name: "VIDALON NAVARRO, FLOR GAZUME", attendance: 0, history: [] }
-            ],
-            "1C": [
-                { id: "1C-001", name: "ALARCON LUJAN, MIGUEL GUSTAVO", attendance: 0, history: [] },
-                { id: "1C-002", name: "ASCONA ALCCA, STEFANNY NIKOLLE", attendance: 0, history: [] },
-                { id: "1C-003", name: "BAUTISTA MUÑOZ, DEANGELO CÈSAR", attendance: 0, history: [] },
-                { id: "1C-004", name: "CARBAJAL FAJARDO, GUADALUPE MILLETH", attendance: 0, history: [] },
-                { id: "1C-005", name: "CARRANZA REYES, DIARA NICOL", attendance: 0, history: [] },
-                { id: "1C-006", name: "CASTAÑEDA VELARDE, MASSIEL IVONNE", attendance: 0, history: [] },
-                { id: "1C-007", name: "CHANDUVI BLANCO, ZAID ZAHIR", attendance: 0, history: [] },
-                { id: "1C-008", name: "CHERRE VELARDE, AVRIL NICOLE", attendance: 0, history: [] },
-                { id: "1C-009", name: "CUBA USCATA, AISHA KASUMY", attendance: 0, history: [] },
-                { id: "1C-010", name: "ESPINOZA JORGES, CARLOS DAYRON", attendance: 0, history: [] },
-                { id: "1C-011", name: "GUERRA MONTOYA, KEYSI ADRIANA", attendance: 0, history: [] },
-                { id: "1C-012", name: "HUAMAN TAPULLIMA, MELANY MISHEL", attendance: 0, history: [] },
-                { id: "1C-013", name: "IZQUIERDO CAMPOS, CAMILA", attendance: 0, history: [] },
-                { id: "1C-014", name: "LEGARIO HEREDIA, MILAGROS GUADALUPE", attendance: 0, history: [] },
-                { id: "1C-015", name: "LUJAN HERRERA, ROLY JADIEL", attendance: 0, history: [] },
-                { id: "1C-016", name: "LURITA MUÑOZ, JOSFELL JAIR", attendance: 0, history: [] },
-                { id: "1C-017", name: "MARTINEZ ARANGO, MILLER YOSIMAR", attendance: 0, history: [] },
-                { id: "1C-018", name: "MARTINEZ BURGA, ASHLY JOHANA", attendance: 0, history: [] },
-                { id: "1C-019", name: "MUNAYA MUÑOZ, FERNANDA GUADALUPE", attendance: 0, history: [] },
-                { id: "1C-020", name: "MUNAYA SOTO, DANIELA NAOMI", attendance: 0, history: [] },
-                { id: "1C-021", name: "MUÑOZ LLAUCA, MANUEL GERARD", attendance: 0, history: [] },
-                { id: "1C-022", name: "NAVARRO SOTO, YORDY LINDO", attendance: 0, history: [] },
-                { id: "1C-023", name: "NOA AYQUIPA, YORDAN SAMIR", attendance: 0, history: [] },
-                { id: "1C-024", name: "PALOMINO MEJIA, CRISTIAN", attendance: 0, history: [] },
-                { id: "1C-025", name: "QUICHCA GUTIERREZ, RONALD ALEXANDER", attendance: 0, history: [] },
-                { id: "1C-026", name: "QUISPE ANGULO, CESAR MENLY", attendance: 0, history: [] },
-                { id: "1C-027", name: "QUISPE CHAVEZ, CRISTALY VANESA", attendance: 0, history: [] },
-                { id: "1C-028", name: "QUISPE ICHPAS, JHON ANDRES", attendance: 0, history: [] },
-                { id: "1C-029", name: "QUISPE KAWAKAMI, SCARLET YUNESKY", attendance: 0, history: [] },
-                { id: "1C-030", name: "RAMIREZ ANGELES, PIERINA CRISTHEL", attendance: 0, history: [] },
-                { id: "1C-031", name: "RAMOS MARTINEZ, DIANA CAROLINA", attendance: 0, history: [] },
-                { id: "1C-032", name: "RIVAS MONRROY, JOSUE LIONEL", attendance: 0, history: [] },
-                { id: "1C-033", name: "SANCHEZ VERA, VANIA CAROLINA", attendance: 0, history: [] },
-                { id: "1C-034", name: "SIGUAS MUNARES, KATHERINE ROCIO", attendance: 0, history: [] }
-            ],
-            "1D": [
-                { id: "1D-001", name: "ALCCA VELA, KEYLEFS LIONEL", attendance: 0, history: [] },
-                { id: "1D-002", name: "AYMA ARANGO, CINDY ELIANA", attendance: 0, history: [] },
-                { id: "1D-003", name: "BARDALES CUSIPUMA, ANGEL ANDRES", attendance: 0, history: [] },
-                { id: "1D-004", name: "CACERES COSSIO, ADRIANA ABIGAIL", attendance: 0, history: [] },
-                { id: "1D-005", name: "CARDENAS BRAVO, RUBEN SMITH", attendance: 0, history: [] },
-                { id: "1D-006", name: "CHIPA GOMEZ, DARLYN SOFIA", attendance: 0, history: [] },
-                { id: "1D-007", name: "CONDORE PEREZ, JUAN ISMAEL", attendance: 0, history: [] },
-                { id: "1D-008", name: "CUBA LOAYZA, AREANA SOFIA", attendance: 0, history: [] },
-                { id: "1D-009", name: "CUBAS RIVERA, SAMIRA NAIN", attendance: 0, history: [] },
-                { id: "1D-010", name: "DE LA CRUZ CASTILLO, VICTOR MANUEL", attendance: 0, history: [] },
-                { id: "1D-011", name: "DE LA CRUZ PALOMINO, LEONEL", attendance: 0, history: [] },
-                { id: "1D-012", name: "ESPINOZA CCOICCA, ANDERSON AARON", attendance: 0, history: [] },
-                { id: "1D-013", name: "ESPINOZA TUMAYA, AKEMI ZUMICO", attendance: 0, history: [] },
-                { id: "1D-014", name: "GUZMAN MENESES, THIAGO JAVIER", attendance: 0, history: [] },
-                { id: "1D-015", name: "JANAMPA HUAMANI, KEYSI ABIGAIL", attendance: 0, history: [] },
-                { id: "1D-016", name: "JANAMPA PAUYAC, ERICK JHOSEP", attendance: 0, history: [] },
-                { id: "1D-017", name: "LOZANO BLANCO, JHONATAN MARCELO", attendance: 0, history: [] },
-                { id: "1D-018", name: "LUJAN ORIZONDA, SEBASTIAN LUIGI", attendance: 0, history: [] },
-                { id: "1D-019", name: "LUNA CARDENAS, JESÙS MATEO", attendance: 0, history: [] },
-                { id: "1D-020", name: "MORENO MENA, ANALIA FERNANDA", attendance: 0, history: [] },
-                { id: "1D-021", name: "PEÑA HUAMANÑAHUI, ANDREY ALESSANDRO", attendance: 0, history: [] },
-                { id: "1D-022", name: "PEREZ RAMIREZ, PEDRO ELIAS", attendance: 0, history: [] },
-                { id: "1D-023", name: "PUTNAM RIOS, ALELI AZUCENA", attendance: 0, history: [] },
-                { id: "1D-024", name: "QUIROGA CUSI, FRANIA ALEXANDRA", attendance: 0, history: [] },
-                { id: "1D-025", name: "QUISPE CONTRERAS, ERIKA", attendance: 0, history: [] },
-                { id: "1D-026", name: "QUISPE KAWAKAMI, JHOJARY JARUMI", attendance: 0, history: [] },
-                { id: "1D-027", name: "REYES PILCO, ESPERANZA DANIELA", attendance: 0, history: [] },
-                { id: "1D-028", name: "ROJAS MORENO, IAM JAVIER", attendance: 0, history: [] },
-                { id: "1D-029", name: "SANCHEZ BELLIDO, ANGEL ISRAEL", attendance: 0, history: [] },
-                { id: "1D-030", name: "TASAYCO ENRIQUEZ, MICHEL ANGEL", attendance: 0, history: [] },
-                { id: "1D-031", name: "TOMAIRO PANIAGUA, AHYLIN AHINARA", attendance: 0, history: [] },
-                { id: "1D-032", name: "VALDEZ PALOMINO, DAYLIN YARELI", attendance: 0, history: [] },
-                { id: "1D-033", name: "VICENTE QUINTANA, VALERY JAHEL", attendance: 0, history: [] }
-            ],
-            "1E": [
-                { id: "1E-001", name: "BLANCO HURTADO, DAYRO EDIVALDO", attendance: 0, history: [] },
-                { id: "1E-002", name: "CASTRO HERRERA, BRISA LIZETH", attendance: 0, history: [] },
-                { id: "1E-003", name: "CHAUCA LEVANO, ALEJANDRA YAMILET", attendance: 0, history: [] },
-                { id: "1E-004", name: "CHAVEZ CONDE, DAYANI NICOLE", attendance: 0, history: [] },
-                { id: "1E-005", name: "CUADROS CUSICAHUA, MILDER JARED", attendance: 0, history: [] },
-                { id: "1E-006", name: "DELGADO ARANGO, ERICK GABRIEL", attendance: 0, history: [] },
-                { id: "1E-007", name: "ESPINOZA SIGUAS, CHRISTIAN DANIEL", attendance: 0, history: [] },
-                { id: "1E-008", name: "FERNANDEZ QUINTANA, ABIGAIL LENAY", attendance: 0, history: [] },
-                { id: "1E-009", name: "GALINDO TORO, VICTOR RUBEN", attendance: 0, history: [] },
-                { id: "1E-010", name: "GONZALES CARDENAS, KHRISTOFER ALEXANDER", attendance: 0, history: [] },
-                { id: "1E-011", name: "GONZALES VARGAS, ARIAN JESÙS", attendance: 0, history: [] },
-                { id: "1E-012", name: "GUEVARA VIOLETA, DARLIN JAZMIN", attendance: 0, history: [] },
-                { id: "1E-013", name: "LIZANA VALDIVIA, JHAZZU MICHAEL", attendance: 0, history: [] },
-                { id: "1E-014", name: "LOZANO PEREZ, JIMENA ALEJANDRA", attendance: 0, history: [] },
-                { id: "1E-015", name: "MAYURI LOZA, RAPHAELA DARLYNE", attendance: 0, history: [] },
-                { id: "1E-016", name: "MENESES CARDENAS, MIGUEL ANGEL", attendance: 0, history: [] },
-                { id: "1E-017", name: "MIRANDA URCUHUARANGA, MARELLY JAZMIN", attendance: 0, history: [] },
-                { id: "1E-018", name: "MUÑANTE DE LA CRUZ, JESSYBEL MIRELLA", attendance: 0, history: [] },
-                { id: "1E-019", name: "NINASAUME LAURA, ISRAEL ALBERTO", attendance: 0, history: [] },
-                { id: "1E-020", name: "ÑAÑEZ ORE, JHORDY SAMIR", attendance: 0, history: [] },
-                { id: "1E-021", name: "ÑAÑEZ SEVINCHA, ARIANA JAMILETTE", attendance: 0, history: [] },
-                { id: "1E-022", name: "PALOMINO BRAVO, ROSE ANGELES", attendance: 0, history: [] },
-                { id: "1E-023", name: "PALOMINO RIVEROS, ELMER ALEJANDRO", attendance: 0, history: [] },
-                { id: "1E-024", name: "QUICHCA ACEVEDO, MARCO ELIAS", attendance: 0, history: [] },
-                { id: "1E-025", name: "QUIWI ENCISO, RUTH MEYLY", attendance: 0, history: [] },
-                { id: "1E-026", name: "ROJAS GOMEZ, DARLINE ERIKA", attendance: 0, history: [] },
-                { id: "1E-027", name: "ROJAS ORE, JOSÈ CARLOS", attendance: 0, history: [] },
-                { id: "1E-028", name: "SANCHEZ MANCILLA, JOSUE DANIEL", attendance: 0, history: [] },
-                { id: "1E-029", name: "SANTOS DE LA CRUZ, MARIELENA IVETT", attendance: 0, history: [] },
-                { id: "1E-030", name: "SEDANO PALOMINO, LEONARD RONALDO", attendance: 0, history: [] },
-                { id: "1E-031", name: "SEDANO VARGAS, SAUL", attendance: 0, history: [] },
-                { id: "1E-032", name: "SOTO TOLEDO, JORGE DAVID", attendance: 0, history: [] },
-                { id: "1E-033", name: "TOLEDO YAURICASA, EDDIE YSAU", attendance: 0, history: [] }
-            ],
+            // Primer grado
+            "1A": generarEstudiantes("1A", 35),
+            "1B": generarEstudiantes("1B", 35),
+            "1C": generarEstudiantes("1C", 35),
+            "1D": generarEstudiantes("1D", 35),
+            "1E": generarEstudiantes("1E", 35),
 
-            // ========== SEGUNDO GRADO ==========
-            "2A": [
-                { id: "2A-001", name: "AGUIRRE VIZARRETA, GONZALO FABRIZIO", attendance: 0, history: [] },
-                { id: "2A-002", name: "ALBITES SEDANO, TANIA LIZ", attendance: 0, history: [] },
-                { id: "2A-003", name: "ALLCCAHUAMAN HUARIPAUCAR, JEFFERSON DANNY", attendance: 0, history: [] },
-                { id: "2A-004", name: "ARANGO ASTUÑAUPA, SNAYDER SMITH", attendance: 0, history: [] },
-                { id: "2A-005", name: "ASCONA ALCCA, ADRIANA DEL ROSARIO", attendance: 0, history: [] },
-                { id: "2A-006", name: "AYALA PELAEZ, JING SU EMMANUEL", attendance: 0, history: [] },
-                { id: "2A-007", name: "BARRIAL DIAZ, ARIANA NAOMI", attendance: 0, history: [] },
-                { id: "2A-008", name: "BECERRA TAVARA, SAOKY SUMMY", attendance: 0, history: [] },
-                { id: "2A-009", name: "BRAVO HERRERA, DANNY BENJAMIN", attendance: 0, history: [] },
-                { id: "2A-010", name: "BRAVO MARTINEZ, LEISY YANETH", attendance: 0, history: [] },
-                { id: "2A-011", name: "DURAN RONCEROS, JUAN DAVID", attendance: 0, history: [] },
-                { id: "2A-012", name: "GUILLEN CUSIPUMA, BRILLITH ADRIANA", attendance: 0, history: [] },
-                { id: "2A-013", name: "HUAMACTO RAMIREZ, JOSÈ ANGEL", attendance: 0, history: [] },
-                { id: "2A-014", name: "IPURRE AROTINCO, CRISTHIAN ALEXANDER", attendance: 0, history: [] },
-                { id: "2A-015", name: "LUNA MENESES, IYARI MILEN", attendance: 0, history: [] },
-                { id: "2A-016", name: "MEDINA MONROY, ARIANNA VALERIA", attendance: 0, history: [] },
-                { id: "2A-017", name: "MENDOZA ASTO, ANGEL ANDRES", attendance: 0, history: [] },
-                { id: "2A-018", name: "MUÑOZ SARAVIA, NATALIA ESTEFANIA", attendance: 0, history: [] },
-                { id: "2A-019", name: "NAVARRO SOTO, NEYMAR SCHNEIDER", attendance: 0, history: [] },
-                { id: "2A-020", name: "ORMEÑO TOLEDO, YICO", attendance: 0, history: [] },
-                { id: "2A-021", name: "OSCCO RIOS, HARED JHON", attendance: 0, history: [] },
-                { id: "2A-022", name: "PALOMINO MALDONADO, VALERIA NAOMI", attendance: 0, history: [] },
-                { id: "2A-023", name: "PINEDO GONZALES, SAMMY NATHALY", attendance: 0, history: [] },
-                { id: "2A-024", name: "QUISPE HUAYANAY, MIRIAM GIANINNA", attendance: 0, history: [] },
-                { id: "2A-025", name: "RODRIGUEZ GUTIERREZ, KIARA YAMILE", attendance: 0, history: [] },
-                { id: "2A-026", name: "SALAZAR MARTINEZ, YACORI SARUMY JIRETH", attendance: 0, history: [] },
-                { id: "2A-027", name: "SIGUAS YUPA, EMILY ROSE", attendance: 0, history: [] },
-                { id: "2A-028", name: "TASAYCO ENRIQUEZ, SILVIA ANGELES", attendance: 0, history: [] },
-                { id: "2A-029", name: "TOLEDO ROJAS, AIZA XIOMARA", attendance: 0, history: [] },
-                { id: "2A-030", name: "TORRES SALAZAR, ANGGELY XIOMIRA", attendance: 0, history: [] },
-                { id: "2A-031", name: "TUCTA CASTRO, CAMILA ALEXANDRA", attendance: 0, history: [] },
-                { id: "2A-032", name: "URRUTIA BRAVO, GUSTAVO JESÙS", attendance: 0, history: [] },
-                { id: "2A-033", name: "VEGA FERNANDEZ, ILLARI MAYTEE", attendance: 0, history: [] },
-                { id: "2A-034", name: "YAMOJA MOTTA, ANGELA MARIA", attendance: 0, history: [] }
-            ],
-            "2B": [
-                { id: "2B-001", name: "ALFARO SOTO, YASURI ESMERALDA", attendance: 0, history: [] },
-                { id: "2B-002", name: "AROTINCO PARICAHUA, ADRIAN SMITH", attendance: 0, history: [] },
-                { id: "2B-003", name: "AYALA CAMPOS, GABRIELA BELEN", attendance: 0, history: [] },
-                { id: "2B-004", name: "BARDALES UCHARIMA, ANA ISABEL", attendance: 0, history: [] },
-                { id: "2B-005", name: "BRAVO HERRERA, KIHARA NICOLE", attendance: 0, history: [] },
-                { id: "2B-006", name: "CACERES QUISPE, GLADYS THALIA", attendance: 0, history: [] },
-                { id: "2B-007", name: "CANAQUIRI REATEGUI, WINQUERMAN", attendance: 0, history: [] },
-                { id: "2B-008", name: "CASTRO QUISPE, JHAIRO ESMITH", attendance: 0, history: [] },
-                { id: "2B-009", name: "CHOTA RUIZ, JHONEL WEGNER", attendance: 0, history: [] },
-                { id: "2B-010", name: "CORAHUA AGUILAR, VALERY FABIANA", attendance: 0, history: [] },
-                { id: "2B-011", name: "GRANADOS BRAVO, JAIR FERNANDO", attendance: 0, history: [] },
-                { id: "2B-012", name: "HERRERA MARTINEZ, DUVAN MARTIN", attendance: 0, history: [] },
-                { id: "2B-013", name: "HUAMAN SULLCARAY, JAZMIN DAMARIS", attendance: 0, history: [] },
-                { id: "2B-014", name: "LLAMOSA MENDOZA, BLEYNER ALDAHIR", attendance: 0, history: [] },
-                { id: "2B-015", name: "MACASSI INCA, GRACE YARELY", attendance: 0, history: [] },
-                { id: "2B-016", name: "MEDRANO TAPIA, ITALO EVANS", attendance: 0, history: [] },
-                { id: "2B-017", name: "MEJIA PALOMINO, YEITH HANSWATH", attendance: 0, history: [] },
-                { id: "2B-018", name: "MUNAICO RAMOS, ADDERLY JESÙS", attendance: 0, history: [] },
-                { id: "2B-019", name: "OLIVARES HUAMAN, JUAN ELIAS JESÙS", attendance: 0, history: [] },
-                { id: "2B-020", name: "ORE DEL RIO, DIEGO ARTURO", attendance: 0, history: [] },
-                { id: "2B-021", name: "ORE DEL RIO, LUIS MIGUEL", attendance: 0, history: [] },
-                { id: "2B-022", name: "PALACIOS DE LA CRUZ, YANS PEDRO", attendance: 0, history: [] },
-                { id: "2B-023", name: "PAUCAR ÑAÑEZ, SEBASTIAN JAVIER", attendance: 0, history: [] },
-                { id: "2B-024", name: "PEREZ BRAVO, AYLEN ALONDRA", attendance: 0, history: [] },
-                { id: "2B-025", name: "PEVE FLORES, CLAUDIA SOFIA", attendance: 0, history: [] },
-                { id: "2B-026", name: "QUISPE SEDANO, ROSITA", attendance: 0, history: [] },
-                { id: "2B-027", name: "RODRIGUEZ LEVANO, TATIANA ALEXANDRA", attendance: 0, history: [] },
-                { id: "2B-028", name: "ROMAN CASTRO, LUCIANO JOSÈ", attendance: 0, history: [] },
-                { id: "2B-029", name: "RUIZ CARDENAS, JHOSELIN JHIDA", attendance: 0, history: [] },
-                { id: "2B-030", name: "SEDANO ESCOBAR, MERIAN", attendance: 0, history: [] },
-                { id: "2B-031", name: "SEDANO TAYPE, BEATRIZ", attendance: 0, history: [] },
-                { id: "2B-032", name: "SOTELO QUISPE, KERLY ZAYURI", attendance: 0, history: [] },
-                { id: "2B-033", name: "TIPO PAUYAC, MARIANGELA PAZ", attendance: 0, history: [] },
-                { id: "2B-034", name: "TORRES CHAUCA, FABRITZIO YAIR", attendance: 0, history: [] },
-                { id: "2B-035", name: "USCATA SOTO, MILAGROS KATHERINE", attendance: 0, history: [] },
-                { id: "2B-036", name: "VASQUEZ OLIVARES, DICKSON CELSO", attendance: 0, history: [] },
-                { id: "2B-037", name: "VIDALON NAVARRO, DANNY", attendance: 0, history: [] },
-                { id: "2B-038", name: "VIZARRETA REVATE, RONALD EDUARDO", attendance: 0, history: [] },
-                { id: "2B-039", name: "YAMOJA CAHUANA, HUR AARON", attendance: 0, history: [] }
-            ],
-            "2C": [
-                { id: "2C-001", name: "ALVITES MUNARES, MAURICIO EMANUEL", attendance: 0, history: [] },
-                { id: "2C-002", name: "ARTIAGA USCATA, JACK JHONLI", attendance: 0, history: [] },
-                { id: "2C-003", name: "CARRIZALES RAMOS, ELVA SHANTAL", attendance: 0, history: [] },
-                { id: "2C-004", name: "CHAVEZ SANTOS, ANA SELEN", attendance: 0, history: [] },
-                { id: "2C-005", name: "CHIPA NEYRA, CHIARA SAMARA", attendance: 0, history: [] },
-                { id: "2C-006", name: "CONISLLA QUISPE, DEYVIS BENJAMIN", attendance: 0, history: [] },
-                { id: "2C-007", name: "CORPUS CORZO, HAZDY DEL ROSARIO", attendance: 0, history: [] },
-                { id: "2C-008", name: "CUPITAY PEREZ, ANGELLA SAYURI", attendance: 0, history: [] },
-                { id: "2C-009", name: "FALCON NOA, ELIANA YANIRA", attendance: 0, history: [] },
-                { id: "2C-010", name: "GALVEZ QUISPE, MEILY RUBÌ", attendance: 0, history: [] },
-                { id: "2C-011", name: "HEREDIA ONCEBAY, NIKOLY NOEMI", attendance: 0, history: [] },
-                { id: "2C-012", name: "HUAMAN CACERES, JHOEL ALEXANDER", attendance: 0, history: [] },
-                { id: "2C-013", name: "HUAMANI SOTO, LENYN LEONARDO JOSIMAR", attendance: 0, history: [] },
-                { id: "2C-014", name: "HUARACA FLORES, JIMENA ELIZABETH", attendance: 0, history: [] },
-                { id: "2C-015", name: "HUAYTA RAMOS, GENESIS MILENA", attendance: 0, history: [] },
-                { id: "2C-016", name: "HUAYTALLA MARTINEZ, JAZMIN KATERINE", attendance: 0, history: [] },
-                { id: "2C-017", name: "JUSTINIANO BENITES, SMITH ZACARIAS", attendance: 0, history: [] },
-                { id: "2C-018", name: "MANIHUARI MUÑANTE, DULCE BELEN", attendance: 0, history: [] },
-                { id: "2C-019", name: "MARTINEZ VERA, JUAN MATEO ISAIAS", attendance: 0, history: [] },
-                { id: "2C-020", name: "MUNAYA TICAHUANCA, ANGELA DEL ROSARIO", attendance: 0, history: [] },
-                { id: "2C-021", name: "MUÑOZ BAUTISTA, SAHORI AYLIN", attendance: 0, history: [] },
-                { id: "2C-022", name: "MURAYARI GUTIERREZ, YURI BALVINA", attendance: 0, history: [] },
-                { id: "2C-023", name: "NEYRA MARTINEZ, MAYCOL JHORDAN", attendance: 0, history: [] },
-                { id: "2C-024", name: "NEYRA RONCEROS, FERNANDA DE LOS ANGELES", attendance: 0, history: [] },
-                { id: "2C-025", name: "ONCEBAY MUNARES, ANGEL SMITH", attendance: 0, history: [] },
-                { id: "2C-026", name: "PEÑA QUISPE, NEYMAR LEANDRO", attendance: 0, history: [] },
-                { id: "2C-027", name: "PEREZ VARGAS, LIBNY PRISCILA", attendance: 0, history: [] },
-                { id: "2C-028", name: "QUINTANA BRAVO, ABER ORLANDO", attendance: 0, history: [] },
-                { id: "2C-029", name: "QUISPE ALBITRES, SONGOD STEVEN IVAN", attendance: 0, history: [] },
-                { id: "2C-030", name: "RIOS CHOQUE, JOSIAS CARLOS", attendance: 0, history: [] },
-                { id: "2C-031", name: "RODRIGUEZ ÑAÑA, MILAGROS SALOME", attendance: 0, history: [] },
-                { id: "2C-032", name: "RODRIGUEZ QUISPE, IAN VALENTINO", attendance: 0, history: [] },
-                { id: "2C-033", name: "SOTO CIUDAD, MARBEL YOMIRA", attendance: 0, history: [] },
-                { id: "2C-034", name: "TELLO RIVERA, JUAN SAID", attendance: 0, history: [] },
-                { id: "2C-035", name: "TORNERO MUÑANTE, ALEXANDRO DEL PIERO", attendance: 0, history: [] },
-                { id: "2C-036", name: "TUCTA LOZANO, DAYRO FABRIZIO", attendance: 0, history: [] },
-                { id: "2C-037", name: "URIBE QUISPE, MARVIN ADEMIR", attendance: 0, history: [] },
-                { id: "2C-038", name: "VELARDE PORTILLA, TATIANA MILENE", attendance: 0, history: [] },
-                { id: "2C-039", name: "VENTURA QULICHE, EDWIN DAVID", attendance: 0, history: [] }
-            ],
-            "2D": [
-                { id: "2D-001", name: "ACHULLI ESPINO, ALESSANDRA DAYLI", attendance: 0, history: [] },
-                { id: "2D-002", name: "ALATA CAHUIN, JOHAN ELMER", attendance: 0, history: [] },
-                { id: "2D-003", name: "AROTINCO GEREDA, ANTONIO JESÙS", attendance: 0, history: [] },
-                { id: "2D-004", name: "AROTINCO GEREDA, ENSO JESÙS", attendance: 0, history: [] },
-                { id: "2D-005", name: "AVILA YATACO, ANGEL DAVID", attendance: 0, history: [] },
-                { id: "2D-006", name: "BARDALES CUSIPUMA, ANDREA ROCIO", attendance: 0, history: [] },
-                { id: "2D-007", name: "BLANCO SANDOVAL, CARLOS STEPHANO", attendance: 0, history: [] },
-                { id: "2D-008", name: "BOCANEGRA HUAMAN, MARBELITH MISHELL", attendance: 0, history: [] },
-                { id: "2D-009", name: "CABRERA QUISPE, CARLOS SAMIR", attendance: 0, history: [] },
-                { id: "2D-010", name: "CAMASE ALARCON, KATHERINE YOMAIRA", attendance: 0, history: [] },
-                { id: "2D-011", name: "CAMPOS SAEZ, VICENTE JESÙS", attendance: 0, history: [] },
-                { id: "2D-012", name: "CARBAJAL MAGALLANES, GONZALO DANIEL", attendance: 0, history: [] },
-                { id: "2D-013", name: "CASTRO HUAMAN, HILDA KAORI", attendance: 0, history: [] },
-                { id: "2D-014", name: "CRISPIN ÑAHUINCOPA, BUSH CIRO", attendance: 0, history: [] },
-                { id: "2D-015", name: "CRISPIN VARGAS, JASSETH", attendance: 0, history: [] },
-                { id: "2D-016", name: "CRUCES CAMPOS, CARMEN SAYUMI", attendance: 0, history: [] },
-                { id: "2D-017", name: "DE LA CRUZ NEYRA, CLEVER JAVIER", attendance: 0, history: [] },
-                { id: "2D-018", name: "DIAZ JANAMPA, LIDIA ALEXANDRA", attendance: 0, history: [] },
-                { id: "2D-019", name: "DURAN CABRERA, JHOEL ANTONY", attendance: 0, history: [] },
-                { id: "2D-020", name: "GRANDA TUMAYA, JIMMY ANGEL", attendance: 0, history: [] },
-                { id: "2D-021", name: "HUAYTALLA MARTINEZ, MARYORI SABRINA", attendance: 0, history: [] },
-                { id: "2D-022", name: "JANAMPA TOVAR, SAMIR KEYLER", attendance: 0, history: [] },
-                { id: "2D-023", name: "MENDOZA LAURA, CRISTOFER SANTIAGO", attendance: 0, history: [] },
-                { id: "2D-024", name: "MONRROY VELASCO, ROUSSE CELINE", attendance: 0, history: [] },
-                { id: "2D-025", name: "QUISPE ICHPAS, MARIA ANTONIA", attendance: 0, history: [] },
-                { id: "2D-026", name: "QUISPE LOZANO, SEYRA JIMENA", attendance: 0, history: [] },
-                { id: "2D-027", name: "RAMOS ARGUEDAS, ANYELO MATIAS", attendance: 0, history: [] },
-                { id: "2D-028", name: "SANCHEZ CHAUCA, JUAN PEDRO", attendance: 0, history: [] },
-                { id: "2D-029", name: "SANCHEZ CHAUCA, VIVIANA ALEXANDRA", attendance: 0, history: [] },
-                { id: "2D-030", name: "SEDANO CRISPIN, MARILUZ", attendance: 0, history: [] },
-                { id: "2D-031", name: "SEDANO DE LA CRUZ, ORLANDA", attendance: 0, history: [] },
-                { id: "2D-032", name: "SEDANO ESCOBAR, JHOCYMAR", attendance: 0, history: [] },
-                { id: "2D-033", name: "SIGUAS URRUTIA, ANYELI CAMILA", attendance: 0, history: [] },
-                { id: "2D-034", name: "SILVA MEZAS, ANDERSSON SANTHIAGO", attendance: 0, history: [] },
-                { id: "2D-035", name: "TAFUR QUIJAITE, ALEJANDRA INALEN", attendance: 0, history: [] },
-                { id: "2D-036", name: "TARQUI ÑAÑEZ, JAZMIN MARICIELO", attendance: 0, history: [] },
-                { id: "2D-037", name: "VALENCIA CASTILLO, JADY CRISTEL", attendance: 0, history: [] },
-                { id: "2D-038", name: "VILLANUEVA CAMPOS, STEPHANY ANTOANETT", attendance: 0, history: [] }
-            ],
-            // ========== TERCER GRADO ==========
-            "3A": [
-                { id: "3A-001", name: "ARCOS BERNAOLA, ANGELES ZHARICK", attendance: 0, history: [] },
-                { id: "3A-002", name: "CARDENAS AGAPITO, FLOR DE LUZ ESTRELLA", attendance: 0, history: [] },
-                { id: "3A-003", name: "CCAHUIN NOLBERTO, ANDRIO JEREMIAS", attendance: 0, history: [] },
-                { id: "3A-004", name: "CHACALIAZA MUNAYA, DOMINIK JOSÈ", attendance: 0, history: [] },
-                { id: "3A-005", name: "CHAVEZ BAZAN, ROSA DE GUADALUPE", attendance: 0, history: [] },
-                { id: "3A-006", name: "CHOQUE ESTEVES, JUAN OMAR", attendance: 0, history: [] },
-                { id: "3A-007", name: "CONDORE BARRETO, WILMER", attendance: 0, history: [] },
-                { id: "3A-008", name: "CRUZ MARIÑO, YEISON PABLO", attendance: 0, history: [] },
-                { id: "3A-009", name: "DE LA CRUZ MUÑOZ, CESAR SEBASTIAN", attendance: 0, history: [] },
-                { id: "3A-010", name: "ENCISO GIRON, ESTEBAN ISAIAS", attendance: 0, history: [] },
-                { id: "3A-011", name: "ESPINOZA PALOMINO, LYLA WENDOLYN", attendance: 0, history: [] },
-                { id: "3A-012", name: "ESPINOZA PORRAS, DEAN PABLO", attendance: 0, history: [] },
-                { id: "3A-013", name: "FERNANDEZ ROJAS, GLICERIO JHAMPIER", attendance: 0, history: [] },
-                { id: "3A-014", name: "FERNANDEZ TATAJE, MIREILYS DIGNAYEL", attendance: 0, history: [] },
-                { id: "3A-015", name: "HERNANDEZ PANDURO, KALID ANNETHE (TRASLADADO)", attendance: 0, history: [] },
-                { id: "3A-016", name: "HUALLCCA BRAVO, FABRICIO JESÙS", attendance: 0, history: [] },
-                { id: "3A-017", name: "JANAMPA CONISLLA, LESLIE FABIANA", attendance: 0, history: [] },
-                { id: "3A-018", name: "LLAMOSA MENDOZA, SKARLET MILENA", attendance: 0, history: [] },
-                { id: "3A-019", name: "MALLQUI AQUINO, DAYANA MARÌA", attendance: 0, history: [] },
-                { id: "3A-020", name: "MARTINEZ BURGA, ORIANA MILUSKA", attendance: 0, history: [] },
-                { id: "3A-021", name: "MAURTUA APESTEGUIA, BRIZA SUMMY", attendance: 0, history: [] },
-                { id: "3A-022", name: "MUÑOZ NEYRA, ZARELLY ANYHELI", attendance: 0, history: [] },
-                { id: "3A-023", name: "ORÈ PALOMINO, YOEL ALEXANDER", attendance: 0, history: [] },
-                { id: "3A-024", name: "PEREZ RIVAS, VALEREI FABIANA", attendance: 0, history: [] },
-                { id: "3A-025", name: "QUISPE BRAVO, ANGEL SMITH", attendance: 0, history: [] },
-                { id: "3A-026", name: "QUISPE CONDEÑA, XIOMARA FERNANDA (NN.EE)", attendance: 0, history: [] },
-                { id: "3A-027", name: "RAMOS HUAMAN, ERICK GUSTAVO", attendance: 0, history: [] },
-                { id: "3A-028", name: "ROMERO MENDOZA, FABRIZIO SANTIAGO", attendance: 0, history: [] },
-                { id: "3A-029", name: "SAEZ ARUCANQUI, KAORI DEL ROSARIO", attendance: 0, history: [] },
-                { id: "3A-030", name: "SANCHEZ SAYRITUPAC, DEYVYD JAVIER", attendance: 0, history: [] },
-                { id: "3A-031", name: "SEDANO CRISPIN, JHON ALBERTO", attendance: 0, history: [] },
-                { id: "3A-032", name: "SIGUENSA VELASQUEZ, ZARUMY YAMILETH", attendance: 0, history: [] },
-                { id: "3A-033", name: "TRUJILLO DELGADO, BRYAN ALEXANDER", attendance: 0, history: [] }
-            ],
-            "3B": [
-                { id: "3B-001", name: "CAMPOS AQUINO, ANDRES DANIEL", attendance: 0, history: [] },
-                { id: "3B-002", name: "CASAS MANCHEGO, DARWIN SAUL (NN.EE)", attendance: 0, history: [] },
-                { id: "3B-003", name: "ENCISO GIRON, DENILSON LEONEL", attendance: 0, history: [] },
-                { id: "3B-004", name: "ESPINOZA SALGUERO, YARELI DALIZ", attendance: 0, history: [] },
-                { id: "3B-005", name: "FLORES ARUCANQUI, ANDY JARED", attendance: 0, history: [] },
-                { id: "3B-006", name: "GARFIAS GONZALES, EMILY BRIGITTE", attendance: 0, history: [] },
-                { id: "3B-007", name: "GUERRA MONTOYA, ITHALO ADRIAN", attendance: 0, history: [] },
-                { id: "3B-008", name: "HERRERA JIMENEZ, STEVIN CALEB", attendance: 0, history: [] },
-                { id: "3B-009", name: "IVALA PRADO, LUZ ANGÈLICA", attendance: 0, history: [] },
-                { id: "3B-010", name: "JIMENEZ CASTILLO, LUIS ALFREDO", attendance: 0, history: [] },
-                { id: "3B-011", name: "LUJAN BRAVO, MARICIELO MARGARITA", attendance: 0, history: [] },
-                { id: "3B-012", name: "MANTURANO RODRIGUEZ, KARL JHONNEL", attendance: 0, history: [] },
-                { id: "3B-013", name: "PALOMARES WONG, SOLANGIE MEDALY", attendance: 0, history: [] },
-                { id: "3B-014", name: "PAZ DIAZ, MILAGROS GUADALUPE", attendance: 0, history: [] },
-                { id: "3B-015", name: "RAMIREZ CASTILLO, SALVADOR ANTONIO LEON", attendance: 0, history: [] },
-                { id: "3B-016", name: "RIVERA QUISPE, ANDREA MELISSA", attendance: 0, history: [] },
-                { id: "3B-017", name: "RODRIGUEZ GUTIERREZ, JESÙS FELIPE", attendance: 0, history: [] },
-                { id: "3B-018", name: "SEVINCHA TACAS, JAZMIN ESMERALDA", attendance: 0, history: [] },
-                { id: "3B-019", name: "SIGUAS FRANCO, LUHANA LUISA", attendance: 0, history: [] },
-                { id: "3B-020", name: "SUAREZ CAMPOS, SEBASTIAN", attendance: 0, history: [] },
-                { id: "3B-021", name: "TUMAYA PALOMINO, JAZMIN DEL ROSARIO", attendance: 0, history: [] },
-                { id: "3B-022", name: "USCATA GARCIA, MATTIAS ALESSANDRO", attendance: 0, history: [] },
-                { id: "3B-023", name: "VICERREL VERA, VICTOR ADRIAN", attendance: 0, history: [] },
-                { id: "3B-024", name: "VILCHEZ ASCONA, ANGEL ALDAIR", attendance: 0, history: [] },
-                { id: "3B-025", name: "YAMOJA MIRANDA, CARLOS SAMIR", attendance: 0, history: [] }
-            ],
-            "3C": [
-                { id: "3C-001", name: "AGUIRRE SOLANO, GENESIS ESTER", attendance: 0, history: [] },
-                { id: "3C-002", name: "AIQUIPA MUÑANTE, ANGGELO SEBASTIAN", attendance: 0, history: [] },
-                { id: "3C-003", name: "ANDRADE LURITA, NAYELI MIRELLA", attendance: 0, history: [] },
-                { id: "3C-004", name: "APESTEGUIA HUARANGA, JESÙS ADRIAN", attendance: 0, history: [] },
-                { id: "3C-005", name: "BARDALES UCHARIMA, ADRIANA CARLA", attendance: 0, history: [] },
-                { id: "3C-006", name: "BRAVO MUÑANTE, ANGELES MADELEY", attendance: 0, history: [] },
-                { id: "3C-007", name: "CORZO NAVARRO, ANYELLA LICED", attendance: 0, history: [] },
-                { id: "3C-008", name: "CURI LLAUCA, RUTH MAGDALENA", attendance: 0, history: [] },
-                { id: "3C-009", name: "FERNANDEZ RAMIREZ, FRANKLIN MIRKO", attendance: 0, history: [] },
-                { id: "3C-010", name: "FUENTES LOZA, YAMEL ANGEL", attendance: 0, history: [] },
-                { id: "3C-011", name: "HERRERA MARTINEZ, SOFIA BRILLYT", attendance: 0, history: [] },
-                { id: "3C-012", name: "IGNACIO ALBAN, MIA NAYARA", attendance: 0, history: [] },
-                { id: "3C-013", name: "JIMENEZ NOLVERTO, JAIRO FABIAN", attendance: 0, history: [] },
-                { id: "3C-014", name: "LOAYZA COLQUE, BELEN EUNICE", attendance: 0, history: [] },
-                { id: "3C-015", name: "MANRIQUE UGARTE, JOSEPH ANTUAN", attendance: 0, history: [] },
-                { id: "3C-016", name: "MARCA HERNANDEZ, ASHLEY KEILEY", attendance: 0, history: [] },
-                { id: "3C-017", name: "PALOMINO ALMEYDA, AUSTIN ALEXIS", attendance: 0, history: [] },
-                { id: "3C-018", name: "PALOMINO QUICHCA, STEFANNY LUANA", attendance: 0, history: [] },
-                { id: "3C-019", name: "PEVE CORDOVA, SEBASTIAN ALEXANDER", attendance: 0, history: [] },
-                { id: "3C-020", name: "PIMENTEL CONDORI, JIMENA ROCIO", attendance: 0, history: [] },
-                { id: "3C-021", name: "QUIHUE RIVERA, DENNIS MEZUT", attendance: 0, history: [] },
-                { id: "3C-022", name: "QUISPE CONDEÑA, SCARLET MARYORI (NN.EE)", attendance: 0, history: [] },
-                { id: "3C-023", name: "QUISPE JANAMPA, JHOSUE DEYVIDH", attendance: 0, history: [] },
-                { id: "3C-024", name: "RAMOS MAURTUA, JOEL SMITH", attendance: 0, history: [] },
-                { id: "3C-025", name: "RODRIGUEZ SARAVIA, MAYLI ALISSON", attendance: 0, history: [] },
-                { id: "3C-026", name: "SOLANO BENDEZÙ, DAYRON ANDRÈS", attendance: 0, history: [] },
-                { id: "3C-027", name: "TAYPE SEDANO, JOSÈ ALEXANDER", attendance: 0, history: [] },
-                { id: "3C-028", name: "TUCTA CHAMBILLA, JORGE ARMANDO", attendance: 0, history: [] },
-                { id: "3C-029", name: "URIBE CARLOS, DANNA YULEYSKA", attendance: 0, history: [] }
-            ],
-            "3D": [
-                { id: "3D-001", name: "ALVITES REYES, DULCE MARÌA", attendance: 0, history: [] },
-                { id: "3D-002", name: "ASCONA ALCCA, SACHI DEYANIRA", attendance: 0, history: [] },
-                { id: "3D-003", name: "HUAYHUA MARTINEZ, CRYSTEL ARELYSE", attendance: 0, history: [] },
-                { id: "3D-004", name: "IBALA HUARIPUMA, JAIME JEANCARLOS", attendance: 0, history: [] },
-                { id: "3D-005", name: "IPURRE CRISÒSTOMO, AARON ABNER", attendance: 0, history: [] },
-                { id: "3D-006", name: "JORGES MUÑANTE, ADRIANA LISSET", attendance: 0, history: [] },
-                { id: "3D-007", name: "LAYME TOLEDO, CHIQUINQUIRA JANETH", attendance: 0, history: [] },
-                { id: "3D-008", name: "LUDEÑA GUILLEN, SEBASTIAN", attendance: 0, history: [] },
-                { id: "3D-009", name: "LURITA QUISPE, HENRI DEL PIERO", attendance: 0, history: [] },
-                { id: "3D-010", name: "MAURTUA NEYRA, YADIRA DAYANA", attendance: 0, history: [] },
-                { id: "3D-011", name: "NAVARRO SOTO, ESTEFANY (FALTA EN SIAGIE)", attendance: 0, history: [] },
-                { id: "3D-012", name: "ORIZONDA RAMOS, NILBER DANILO", attendance: 0, history: [] },
-                { id: "3D-013", name: "PACAYA YARICAHUA, DEYVIS", attendance: 0, history: [] },
-                { id: "3D-014", name: "PALOMINO HUARIPUMA, LUIS ANGEL", attendance: 0, history: [] },
-                { id: "3D-015", name: "PAUCAR HUAROTO, AYMEE JHOSSYNETH", attendance: 0, history: [] },
-                { id: "3D-016", name: "PEÑA ROMÀN, KELVIN ALEJANDRO", attendance: 0, history: [] },
-                { id: "3D-017", name: "PONCE RIVAS, CAYETANA", attendance: 0, history: [] },
-                { id: "3D-018", name: "QUINTANA BRAVO, CIELO SCARLET", attendance: 0, history: [] },
-                { id: "3D-019", name: "QUISPE DIAZ, MILENA DANIELA", attendance: 0, history: [] },
-                { id: "3D-020", name: "QUISPE SULCA, MARICIELO YUDITH", attendance: 0, history: [] },
-                { id: "3D-021", name: "RAVELLO CONDORE, RAUL SANTIAGO", attendance: 0, history: [] },
-                { id: "3D-022", name: "RONCEROS CASTRO, JUAN MANUEL", attendance: 0, history: [] },
-                { id: "3D-023", name: "SANCHEZ RODRIGUEZ, KEYKO GRISEL", attendance: 0, history: [] },
-                { id: "3D-024", name: "SOTELO MUNAYA, LUZ DE LUNA", attendance: 0, history: [] },
-                { id: "3D-025", name: "SOTO TOLEDO, JORGE SEBASTIAN", attendance: 0, history: [] },
-                { id: "3D-026", name: "TAYPE SALAZAR, ANDREA", attendance: 0, history: [] },
-                { id: "3D-027", name: "TRILLO YAMOJA, MILENA DANIELA", attendance: 0, history: [] },
-                { id: "3D-028", name: "URIBE CARLOS, ALEXANDER DAVID", attendance: 0, history: [] },
-                { id: "3D-029", name: "VALENZUELA TOLEDO, DANNA GENESIS", attendance: 0, history: [] },
-                { id: "3D-030", name: "VENTURA QUILICHE, SEBASTIAN HERMINIA", attendance: 0, history: [] }
-            ],
+            // Segundo grado
+            "2A": generarEstudiantes("2A", 32),
+            "2B": generarEstudiantes("2B", 32),
+            "2C": generarEstudiantes("2C", 32),
+            "2D": generarEstudiantes("2D", 32),
 
-            // ========== CUARTO GRADO ==========
-            "4A": [
-                { id: "4A-001", name: "ALLCCAHUAMAN HUARIPAUCAR, IDELSA", attendance: 0, history: [] },
-                { id: "4A-002", name: "ALMEYDA GAVILAN, GIAN DEL PIERO", attendance: 0, history: [] },
-                { id: "4A-003", name: "AQUIJE DE LA CRUZ, MARIA GUADALUPE", attendance: 0, history: [] },
-                { id: "4A-004", name: "ASCONA JORGES, DAYANNA JERITH", attendance: 0, history: [] },
-                { id: "4A-005", name: "BECERRA TAVARA, SAORI ESTHER", attendance: 0, history: [] },
-                { id: "4A-006", name: "BELTRAN PEREZ, DEYMIR ALEJANDRO", attendance: 0, history: [] },
-                { id: "4A-007", name: "BERROCAL MENDEZ, FABRICIO ALDAIR", attendance: 0, history: [] },
-                { id: "4A-008", name: "CHAVEZ GARCIA, EMELY LUISA", attendance: 0, history: [] },
-                { id: "4A-009", name: "CHAVEZ ROJAS, MARYORI MILENA", attendance: 0, history: [] },
-                { id: "4A-010", name: "CONTRERAS TAYPE, ERICA", attendance: 0, history: [] },
-                { id: "4A-011", name: "CORDOVA SOTO, ANGEL MARTIN", attendance: 0, history: [] },
-                { id: "4A-012", name: "DE LA CRUZ GUZMAN, YAHELA YANDIRA", attendance: 0, history: [] },
-                { id: "4A-013", name: "ESPINOZA PORRAS, JHEYMI DAHYLI", attendance: 0, history: [] },
-                { id: "4A-014", name: "FLORES RAMOS, MICHAEL ESNAIDE", attendance: 0, history: [] },
-                { id: "4A-015", name: "HUAMAN ACEVEDO, ISMAEL ENOC", attendance: 0, history: [] },
-                { id: "4A-016", name: "HUAMANI SOTO, ZOILA EMILCE", attendance: 0, history: [] },
-                { id: "4A-017", name: "HUAYTALLA MARTINEZ, MERY ALISON", attendance: 0, history: [] },
-                { id: "4A-018", name: "IZQUIERDO CAMPOS, LEITER FARID", attendance: 0, history: [] },
-                { id: "4A-019", name: "LIMAYLLA MONROY, SOFIA SALOME", attendance: 0, history: [] },
-                { id: "4A-020", name: "LIZANA VALDIVIA, BRITSNEY JHASMIN", attendance: 0, history: [] },
-                { id: "4A-021", name: "LOAYZA TAIPE, FREDDY HENDERSON", attendance: 0, history: [] },
-                { id: "4A-022", name: "MELGAR FLORES, ALEXSANDRO PAUL", attendance: 0, history: [] },
-                { id: "4A-023", name: "MORAN MUNAYA, MYA DEL PILAR", attendance: 0, history: [] },
-                { id: "4A-024", name: "ÑAÑEZ ORE, HANS ISMAEL", attendance: 0, history: [] },
-                { id: "4A-025", name: "OLIVARES MORAN, KEYLI MELL", attendance: 0, history: [] },
-                { id: "4A-026", name: "PAUCAR LEON, ARIANNA LISSETH", attendance: 0, history: [] },
-                { id: "4A-027", name: "QUISPE LLACTA, ISAIAS IVAN", attendance: 0, history: [] },
-                { id: "4A-028", name: "RUIZ TORRES, JIMENA VALENTINA", attendance: 0, history: [] },
-                { id: "4A-029", name: "SALAZAR ESTRADA, JOSÈ ANDRES", attendance: 0, history: [] },
-                { id: "4A-030", name: "SALAZAR MARTINEZ, MARIA CLARA", attendance: 0, history: [] },
-                { id: "4A-031", name: "TASAYCO ENRIQUEZ, EMELY JEANETH", attendance: 0, history: [] },
-                { id: "4A-032", name: "TOMAS ANTON, ARIANA CRISTHEL", attendance: 0, history: [] },
-                { id: "4A-033", name: "TUCTA CHAMBILLA, ANDRÈS ARISTOTELES", attendance: 0, history: [] }
-            ],
-            "4B": [
-                { id: "4B-001", name: "APARI IPURRE, SARAI LUCERO", attendance: 0, history: [] },
-                { id: "4B-002", name: "AQUIJE PALOMINO, ROSMERY ISABEL", attendance: 0, history: [] },
-                { id: "4B-003", name: "BARDALES CUSIPUMA, JOSUE ABEL", attendance: 0, history: [] },
-                { id: "4B-004", name: "BENITES PALOMINO, EYDAN EMILIANO", attendance: 0, history: [] },
-                { id: "4B-005", name: "CASTRO QUINTANILLA, CARLOS JESÙS", attendance: 0, history: [] },
-                { id: "4B-006", name: "CORAHUA PEVE, LUIS ALEXANDER", attendance: 0, history: [] },
-                { id: "4B-007", name: "GOMEZ SOTO, JOSSE JONZU", attendance: 0, history: [] },
-                { id: "4B-008", name: "HUACHACA CHAVEZ, NATANIEL ANTONIA", attendance: 0, history: [] },
-                { id: "4B-009", name: "HUAMAN CASTILLO, ANDY JOSÈ", attendance: 0, history: [] },
-                { id: "4B-010", name: "HUAMAN QUISPE, EVELIN", attendance: 0, history: [] },
-                { id: "4B-011", name: "HUAUYA LOPEZ, JOB ABISAI", attendance: 0, history: [] },
-                { id: "4B-012", name: "LANAZCA RODRIGUEZ, MIRIAM YULISSA", attendance: 0, history: [] },
-                { id: "4B-013", name: "LOPEZ HERNANDEZ, DEYVIS IVAN", attendance: 0, history: [] },
-                { id: "4B-014", name: "LOZANO MISARAY, LUCERO JANET", attendance: 0, history: [] },
-                { id: "4B-015", name: "LURITA ORÈ, DARLET ROSARIO", attendance: 0, history: [] },
-                { id: "4B-016", name: "MEJIA ATUNCA, JOHAN", attendance: 0, history: [] },
-                { id: "4B-017", name: "MUNAYA LIMAYLLA, MIA FERNANDA", attendance: 0, history: [] },
-                { id: "4B-018", name: "MUÑOZ GONZALES, LOUSKLENYN YOSIMAR (TRASLADADO)", attendance: 0, history: [] },
-                { id: "4B-019", name: "PACHECO LUNA, ANGELINA ESTEFANY", attendance: 0, history: [] },
-                { id: "4B-020", name: "QUISPE CASTRO, LUHANA ADAMARIS", attendance: 0, history: [] },
-                { id: "4B-021", name: "QUISPE CONSILLA, RUTH VALERIA", attendance: 0, history: [] },
-                { id: "4B-022", name: "QUISPE LURITA, ADRY CAMILA", attendance: 0, history: [] },
-                { id: "4B-023", name: "RAMIREZ CHAVARRIA, CARLOS ALEXIS", attendance: 0, history: [] },
-                { id: "4B-024", name: "REYES SOLDEVILLA, NEYSER GABRIEL", attendance: 0, history: [] },
-                { id: "4B-025", name: "ROJAS OJEDA, ABRAHAM FRANCISCO (Repitente)", attendance: 0, history: [] },
-                { id: "4B-026", name: "SANCHEZ BELLIDO, ANALIA JAREN", attendance: 0, history: [] },
-                { id: "4B-027", name: "SANCHEZ MANCHA, STEPHANIE ANGELA", attendance: 0, history: [] },
-                { id: "4B-028", name: "TACSI LUNA, JHON ANGEL", attendance: 0, history: [] },
-                { id: "4B-029", name: "TORRES TORRES, YOSMEL FRANCISCO", attendance: 0, history: [] },
-                { id: "4B-030", name: "UCHARIMA LLANCARI, JONATHAN ARMANDO", attendance: 0, history: [] },
-                { id: "4B-031", name: "VALLES PORTILLA, ANGELA VALERIA", attendance: 0, history: [] },
-                { id: "4B-032", name: "VERA PEÑA, MIRNA LISSETH", attendance: 0, history: [] },
-                { id: "4B-033", name: "VILLAR GARCIA, ANGEL MIGUEL", attendance: 0, history: [] },
-                { id: "4B-034", name: "YAMOJA MAMANI, FERNANDA GUADALUPE", attendance: 0, history: [] }
-            ],
-            "4C": [
-                { id: "4C-001", name: "ALVITES NUÑEZ, SUSAN ALEXANDRA", attendance: 0, history: [] },
-                { id: "4C-002", name: "AROTINCO GEREDA, BAYRON YOSIMAR", attendance: 0, history: [] },
-                { id: "4C-003", name: "BRAVO SARAVIA, MASSIEL JAEL", attendance: 0, history: [] },
-                { id: "4C-004", name: "CARRIZALES RAMOS, BRUNO FERNANDO", attendance: 0, history: [] },
-                { id: "4C-005", name: "CORAHUA HUAMAN, HENRRY FABRICIO", attendance: 0, history: [] },
-                { id: "4C-006", name: "CUBA QUISPE, JOSÈ MIGUEL", attendance: 0, history: [] },
-                { id: "4C-007", name: "DIAZ JANAMPA, MARCUS ANTONIO", attendance: 0, history: [] },
-                { id: "4C-008", name: "HEREDIA ONCEBAY, HERMARJORIE NAOMI", attendance: 0, history: [] },
-                { id: "4C-009", name: "HERNANDEZ ORÈ, JHENNY ELIZABETH", attendance: 0, history: [] },
-                { id: "4C-010", name: "HUACA GONZALES, ANGEL RODRIGO", attendance: 0, history: [] },
-                { id: "4C-011", name: "JANAMPA CONISLLA, DIANA FERNANDA", attendance: 0, history: [] },
-                { id: "4C-012", name: "LOPEZ REYES, LUIS MIGUEL", attendance: 0, history: [] },
-                { id: "4C-013", name: "MALLCCO RAMOS, RUTH GRECIA", attendance: 0, history: [] },
-                { id: "4C-014", name: "MANRIQUE NOLBERTO, ELIEL EDWIN", attendance: 0, history: [] },
-                { id: "4C-015", name: "MUNAICO PEÑA, DOMINICK MICHAEL", attendance: 0, history: [] },
-                { id: "4C-016", name: "MUÑANTE HUAMANI, LEIDY DIANA", attendance: 0, history: [] },
-                { id: "4C-017", name: "PEÑA VILCA, HECTOR SMITH", attendance: 0, history: [] },
-                { id: "4C-018", name: "PEVE FLORES, JOSUE OBED", attendance: 0, history: [] },
-                { id: "4C-019", name: "QUICHCA ACEVEDO, JAZMIN GRACIELA", attendance: 0, history: [] },
-                { id: "4C-020", name: "QUISPE KAWAKAMI, KAORY JIMENA", attendance: 0, history: [] },
-                { id: "4C-021", name: "QUISPE SEDANO, MIRIAN", attendance: 0, history: [] },
-                { id: "4C-022", name: "SANTA MARIA SALAZAR, ANGEL JESÙS", attendance: 0, history: [] },
-                { id: "4C-023", name: "SEDANO PALOMINO, JAVIER", attendance: 0, history: [] },
-                { id: "4C-024", name: "SIGUAS PANAIFO, DANIEL NATIVIDAD (FALTA EN SIAGIE)", attendance: 0, history: [] },
-                { id: "4C-025", name: "SIMON QUISPE, IRVEN ASEUD", attendance: 0, history: [] },
-                { id: "4C-026", name: "SOLANO SORAS, ELIAS JARET", attendance: 0, history: [] },
-                { id: "4C-027", name: "TRILLO YAMOJA, JUAN CARLOS", attendance: 0, history: [] },
-                { id: "4C-028", name: "URRUTIA GUTIERREZ, JUAN DANIEL", attendance: 0, history: [] },
-                { id: "4C-029", name: "USCATA HERVACIO, LUANA ESTRELLA", attendance: 0, history: [] },
-                { id: "4C-030", name: "VALENCIA ROJAS, JERSON MOISES", attendance: 0, history: [] },
-                { id: "4C-031", name: "VALQUI RODRIGUEZ, BRITNEY ANGELICA (FALTA EN SIAGIE)", attendance: 0, history: [] }
-            ],
-            "4D": [
-                { id: "4D-001", name: "ARCOS TATAJE, ANDERSON SAMIR", attendance: 0, history: [] },
-                { id: "4D-002", name: "ARUCANQUI PASACHE, EDGAR SAMIR", attendance: 0, history: [] },
-                { id: "4D-003", name: "BOZA QUISPE, DAYLIN DEL ROSARIO", attendance: 0, history: [] },
-                { id: "4D-004", name: "CARVO PORTILLA, ESTEFANO ALEXANDER", attendance: 0, history: [] },
-                { id: "4D-005", name: "CASTILLA PARIONA, FIORELLA ALEXANDRA", attendance: 0, history: [] },
-                { id: "4D-006", name: "CHASQUERO RAMOS, DAYRON STTEWAR", attendance: 0, history: [] },
-                { id: "4D-007", name: "DURAN CABRERA, ELIZABETH MARINA", attendance: 0, history: [] },
-                { id: "4D-008", name: "ENCISO GIRÒN, SAMUEL ANTONIO", attendance: 0, history: [] },
-                { id: "4D-009", name: "ESPINOZA CCOICCA, LUZ CLARITA", attendance: 0, history: [] },
-                { id: "4D-010", name: "GUTIERREZ GONZALES, ZECARLOS JUNIOR ALEJANDRO", attendance: 0, history: [] },
-                { id: "4D-011", name: "HUALLCCA BRAVO, LUCIANO JESÙS", attendance: 0, history: [] },
-                { id: "4D-012", name: "HUAMAN CORZO, MIA YAMILE", attendance: 0, history: [] },
-                { id: "4D-013", name: "HUAMAN DURAN, MIA RUBI", attendance: 0, history: [] },
-                { id: "4D-014", name: "HUAMAN MUÑANTE, RICHARD ALONSO", attendance: 0, history: [] },
-                { id: "4D-015", name: "JUAREZ REMACHE, JEAN CARLOS", attendance: 0, history: [] },
-                { id: "4D-016", name: "LEGARIO HEREDIA, JAZMIN LUCERO", attendance: 0, history: [] },
-                { id: "4D-017", name: "LEON RAMOS, NAYELLI ODALIZ", attendance: 0, history: [] },
-                { id: "4D-018", name: "MUNAICO RAMOS, JUAN EDUARDO", attendance: 0, history: [] },
-                { id: "4D-019", name: "MUÑOZ SALGUERO, VICTOR JESÙS", attendance: 0, history: [] },
-                { id: "4D-020", name: "NEYRA MORENO, RODMY AMIR", attendance: 0, history: [] },
-                { id: "4D-021", name: "NEYRA REYES, KAMANDY HANZ", attendance: 0, history: [] },
-                { id: "4D-022", name: "PEÑA QUISPE, SKARLEY XIOMARA", attendance: 0, history: [] },
-                { id: "4D-023", name: "POZO ARONE, MATHIAS ALEXANDER", attendance: 0, history: [] },
-                { id: "4D-024", name: "QUERARI SOLANO, JHOSTIN ARIEL", attendance: 0, history: [] },
-                { id: "4D-025", name: "QUIHUE RODRIGUEZ, MARÌA FERNANDA", attendance: 0, history: [] },
-                { id: "4D-026", name: "QUISPE CCAHUIN, EMMANUEL JOSIAS", attendance: 0, history: [] },
-                { id: "4D-027", name: "RAMIREZ ZURITA, ENRIQUE JEN PIERRE (FALTA EN SIAGIE)", attendance: 0, history: [] },
-                { id: "4D-028", name: "RAMOS CHAUCA, NATALY CATALINA", attendance: 0, history: [] },
-                { id: "4D-029", name: "SOTELO UGARTE, SNAYDER YANDEL", attendance: 0, history: [] },
-                { id: "4D-030", name: "SUAREZ BRAVO, ERICK JEAN POOL", attendance: 0, history: [] },
-                { id: "4D-031", name: "VASQUEZ OLIVARES, LADY MYLEE", attendance: 0, history: [] },
-                { id: "4D-032", name: "VIDALON NAVARRO, YON ALEXANDER", attendance: 0, history: [] }
-            ],
-            // ========== QUINTO GRADO ==========
-            "5A": [
-                { id: "5A-001", name: "CARDENAS MEDRANO, ROSARIO DE LOS ANGELES", attendance: 0, history: [] },
-                { id: "5A-002", name: "CCORI PHOCCO, ELIZABETH ZELMIRA", attendance: 0, history: [] },
-                { id: "5A-003", name: "CHAUPIN QUINTANILLA, DANIEL JEREMIAS", attendance: 0, history: [] },
-                { id: "5A-004", name: "CHAVEZ CONDE, NOEMI FRESIALINDA", attendance: 0, history: [] },
-                { id: "5A-005", name: "CHAVEZ SANTOS, MELI BELEN", attendance: 0, history: [] },
-                { id: "5A-006", name: "CORDOVA CONTRERAS, LEONEL MESSI", attendance: 0, history: [] },
-                { id: "5A-007", name: "CUADROS ASCONA, DALESKA NAOMI", attendance: 0, history: [] },
-                { id: "5A-008", name: "CUBA LOAYZA, MILENA SOFIA", attendance: 0, history: [] },
-                { id: "5A-009", name: "ESPINOZA QUISPE, DARWIN HENRY", attendance: 0, history: [] },
-                { id: "5A-010", name: "FAJARDO GONZALES, MARIA FERNANDA", attendance: 0, history: [] },
-                { id: "5A-011", name: "FERNANDEZ HERRERA, JHARMIR ALEXANDER", attendance: 0, history: [] },
-                { id: "5A-012", name: "FERNANDEZ TATAJE, FERNANDA ANGELYN", attendance: 0, history: [] },
-                { id: "5A-013", name: "GONZALES LEON, MARICIELO CAROLINA", attendance: 0, history: [] },
-                { id: "5A-014", name: "GUZMAN MENESES, LUHANA THAIS", attendance: 0, history: [] },
-                { id: "5A-015", name: "HERRERA CONISLLA, MILENA MARCELA", attendance: 0, history: [] },
-                { id: "5A-016", name: "HERRERA QUISPE, LUZ MELANY", attendance: 0, history: [] },
-                { id: "5A-017", name: "HUACA DIAZ, ERICK FABIAN", attendance: 0, history: [] },
-                { id: "5A-018", name: "HUARACA FLORES, ARELI ELIZABETH", attendance: 0, history: [] },
-                { id: "5A-019", name: "HUAYTA PALOMINO, ANGEL JAIR", attendance: 0, history: [] },
-                { id: "5A-020", name: "JIMENEZ ZAVALA, MARIA FERNANDA", attendance: 0, history: [] },
-                { id: "5A-021", name: "MEJIA REVATTA, MANUEL ADOLFO", attendance: 0, history: [] },
-                { id: "5A-022", name: "NOA AGUIRRE, ANJHELI YAHILYNN", attendance: 0, history: [] },
-                { id: "5A-023", name: "NOA SEGUIL, YEYSSON", attendance: 0, history: [] },
-                { id: "5A-024", name: "NOA VILLAGARAY, GHERALD SALVADOR", attendance: 0, history: [] },
-                { id: "5A-025", name: "NOA VILLAGARAY, GHERALD SANDRO", attendance: 0, history: [] },
-                { id: "5A-026", name: "NOLVERTO VARGAS, DAYRON ADRIANO", attendance: 0, history: [] },
-                { id: "5A-027", name: "OLIVARES VASQUEZ, NOHEMY", attendance: 0, history: [] },
-                { id: "5A-028", name: "ONCEBAY MUNARES, MIGUEL SNAYDER", attendance: 0, history: [] },
-                { id: "5A-029", name: "ORE MUÑANTE, MAYKELL JAVIER", attendance: 0, history: [] },
-                { id: "5A-030", name: "QUISPE MAYURI, RAINER ANDERSON", attendance: 0, history: [] },
-                { id: "5A-031", name: "REVATTA SARAVIA, JESÙS DE NAZARET", attendance: 0, history: [] },
-                { id: "5A-032", name: "ROMERO MENDOZA, VICTOR AMET", attendance: 0, history: [] },
-                { id: "5A-033", name: "SALVADOR SICHA, MIRIAN NATALIA", attendance: 0, history: [] },
-                { id: "5A-034", name: "SEVINCHA MUNAYA, EMILIA ESTHER", attendance: 0, history: [] },
-                { id: "5A-035", name: "TORRE PORTILLA, MIGUEL MAXIMILIANO", attendance: 0, history: [] },
-                { id: "5A-036", name: "TORRES MUNAYA, ARLLENE ARIANA", attendance: 0, history: [] }
-            ],
-            "5B": [
-                { id: "5B-001", name: "ALBERTIS LUNA, ARIANA SELENE", attendance: 0, history: [] },
-                { id: "5B-002", name: "ARCOS TATAJE, MARIA FERNANDA", attendance: 0, history: [] },
-                { id: "5B-003", name: "BAUTISTA NOLBERTO, JAIR ANDERSON", attendance: 0, history: [] },
-                { id: "5B-004", name: "BAUTISTA NOLBERTO, KEVIN ADRIAN", attendance: 0, history: [] },
-                { id: "5B-005", name: "BERROCAL RIVERA, ASHLEY ANAMILET", attendance: 0, history: [] },
-                { id: "5B-006", name: "CARDENAS SARAVIA, ANGELLY CRISTEL", attendance: 0, history: [] },
-                { id: "5B-007", name: "CONDE MEJIA, JEAN DAYVIS", attendance: 0, history: [] },
-                { id: "5B-008", name: "CORAHUA CEPEREAN, MARILYN HANEUL", attendance: 0, history: [] },
-                { id: "5B-009", name: "CRUZATT PAREDES, JUAN DIEGO", attendance: 0, history: [] },
-                { id: "5B-010", name: "ESCOBAR ALARCO, MARCO ANTONIO", attendance: 0, history: [] },
-                { id: "5B-011", name: "ESPINOZA ARUCANQUI, ANAYELLI LIZBETH", attendance: 0, history: [] },
-                { id: "5B-012", name: "FUENTES HERNANDEZ, ANGEL SMITH", attendance: 0, history: [] },
-                { id: "5B-013", name: "HUAMAN CACERES, VALERIA VITALINA", attendance: 0, history: [] },
-                { id: "5B-014", name: "HUAMAN HUARCAYA, CARLOS DAVID", attendance: 0, history: [] },
-                { id: "5B-015", name: "HUAMANI UTUZ, ESTEFANY MIRIAM", attendance: 0, history: [] },
-                { id: "5B-016", name: "JOYA BARAHONA, DAMARIS MILAGROS", attendance: 0, history: [] },
-                { id: "5B-017", name: "LAURA MALLCO, EMELI ALEJANDRA", attendance: 0, history: [] },
-                { id: "5B-018", name: "LLANCARI GUERRA, DANIELA ALEXANDRA", attendance: 0, history: [] },
-                { id: "5B-019", name: "MANIHUARI MUÑANTE, LEONEL REIMOND", attendance: 0, history: [] },
-                { id: "5B-020", name: "MEDINA RISCI, DILAN ALEXANDER", attendance: 0, history: [] },
-                { id: "5B-021", name: "MENDOZA APESTEGUIA, ANDREA JULIANA", attendance: 0, history: [] },
-                { id: "5B-022", name: "MORAN DIAZ, HERLINDA KORAIMA", attendance: 0, history: [] },
-                { id: "5B-023", name: "NINASAUME LAURA, ENMANUEL JOSUE ESTEBAN", attendance: 0, history: [] },
-                { id: "5B-024", name: "PEVE CORDOVA, JOSHEF JUNIOR", attendance: 0, history: [] },
-                { id: "5B-025", name: "SANTIAGO CARMONA, SOLEDAD DANIELA", attendance: 0, history: [] },
-                { id: "5B-026", name: "SOTO VILLAFUERTE, LIZBETH GERALDINE", attendance: 0, history: [] },
-                { id: "5B-027", name: "URIARTE ASCONA, OLASMY SOLANCH", attendance: 0, history: [] },
-                { id: "5B-028", name: "VALENCIA MAYURI, YARINA YARALKIS", attendance: 0, history: [] },
-                { id: "5B-029", name: "VELARDE RAMOS, ALINA JABEL", attendance: 0, history: [] },
-                { id: "5B-030", name: "ZAMBRANO MUÑOZ, TIFFANY YADIRA", attendance: 0, history: [] }
-            ],
-            "5C": [
-                { id: "5C-001", name: "AGUELA HERRERA, HAYLIN TATIANA", attendance: 0, history: [] },
-                { id: "5C-002", name: "ARANGO ASTUÑAUPA, OMAR FRANCO", attendance: 0, history: [] },
-                { id: "5C-003", name: "ARUCANQUI DONAYRE, ANDY FABRICIO", attendance: 0, history: [] },
-                { id: "5C-004", name: "AYMA ARANGO, ANDERSON ELIAS", attendance: 0, history: [] },
-                { id: "5C-005", name: "BLANCO SANDOVAL, KIARA YAMILLE", attendance: 0, history: [] },
-                { id: "5C-006", name: "CHANDUVI BLANCO, ANDRE ALDAIR", attendance: 0, history: [] },
-                { id: "5C-007", name: "CORDOVA MORALES, SEBASTIAN ALONZO", attendance: 0, history: [] },
-                { id: "5C-008", name: "CUBA CAHUA, ALEXANDER LUIS", attendance: 0, history: [] },
-                { id: "5C-009", name: "ESPINOZA MANERO, JHARUMY ANGGELY", attendance: 0, history: [] },
-                { id: "5C-010", name: "GOMEZ SOTO, ANGIE SHAYLIN", attendance: 0, history: [] },
-                { id: "5C-011", name: "HERNANDEZ CESPEDES, ALDANA KORIANKA", attendance: 0, history: [] },
-                { id: "5C-012", name: "HERRERA RIVEROS, LUZ ESMERALDA", attendance: 0, history: [] },
-                { id: "5C-013", name: "HUACAUCE ZUÑIGA, JUNIOR ABEL", attendance: 0, history: [] },
-                { id: "5C-014", name: "LURITA CALDERON, BRITHANNY NICOLLE", attendance: 0, history: [] },
-                { id: "5C-015", name: "LURITA CUCHO, ROSALBA VALERIA", attendance: 0, history: [] },
-                { id: "5C-016", name: "MARTINEZ MALLCCO, LUIS ANTONNY", attendance: 0, history: [] },
-                { id: "5C-017", name: "MARTINEZ SOLANO, JAEL WILLIAM", attendance: 0, history: [] },
-                { id: "5C-018", name: "MEJIA PALOMINO, JAIRO ANTWAN", attendance: 0, history: [] },
-                { id: "5C-019", name: "MENDOZA LOZA, SHERITT ORIANA", attendance: 0, history: [] },
-                { id: "5C-020", name: "MORALES HUACA, CORALY YESENIA", attendance: 0, history: [] },
-                { id: "5C-021", name: "NAVARRO SOTO, JEAN REKELME", attendance: 0, history: [] },
-                { id: "5C-022", name: "OCAMPO SILVA, HILARY LIANCID", attendance: 0, history: [] },
-                { id: "5C-023", name: "PALOMINO HUARIPUMA, DEYVIS ALEJANDRO", attendance: 0, history: [] },
-                { id: "5C-024", name: "PALOMINO QUICHCA, XAVI ALONSO", attendance: 0, history: [] },
-                { id: "5C-025", name: "PINTO CARDENAS, CHARLINE ABRIL", attendance: 0, history: [] },
-                { id: "5C-026", name: "PIZARRO ALBITES, RONSEL SAMIR", attendance: 0, history: [] },
-                { id: "5C-027", name: "RIVERA QUISPE, JOSÈ ELIAS", attendance: 0, history: [] },
-                { id: "5C-028", name: "SIGUAS DIAZ, MARIBEL ESTRELLA", attendance: 0, history: [] },
-                { id: "5C-029", name: "SUAREZ PAUYAC, JOSÈ GUILLERMO", attendance: 0, history: [] },
-                { id: "5C-030", name: "SUYO YUI, JOSÉ FABIAN", attendance: 0, history: [] },
-                { id: "5C-031", name: "TOLEDO ROJAS, NAYSHA ANYELI", attendance: 0, history: [] },
-                { id: "5C-032", name: "TORNERO MUÑANTE, JORGE DAYRON", attendance: 0, history: [] },
-                { id: "5C-033", name: "VELARDE QUISPE, ARIANA JIMENA", attendance: 0, history: [] }
-            ],
-            "5D": [
-                { id: "5D-001", name: "AQUIJE ORÈ, YULEYDI XIOMARA", attendance: 0, history: [] },
-                { id: "5D-002", name: "ASTOCAZA LAURA, DAYELI SARAI", attendance: 0, history: [] },
-                { id: "5D-003", name: "BARDALES CUSIPUMA, LIVIA LEONILDA", attendance: 0, history: [] },
-                { id: "5D-004", name: "CALDERON TAYA, DANIEL DAVID", attendance: 0, history: [] },
-                { id: "5D-005", name: "CAMPOS MONRROY, JULIO CESAR", attendance: 0, history: [] },
-                { id: "5D-006", name: "CUSIPUMA SIGUAS, EDITH GRISEL", attendance: 0, history: [] },
-                { id: "5D-007", name: "CUZCANO SOLDEVILLA, MARICIELO JUMMY", attendance: 0, history: [] },
-                { id: "5D-008", name: "DURAN NUÑEZ, JOSSYMAR JESÙS", attendance: 0, history: [] },
-                { id: "5D-009", name: "GALINDO TORO, ANA CARMELA", attendance: 0, history: [] },
-                { id: "5D-010", name: "HUAMAN ALMEYDA, HECTOR ANTONIO", attendance: 0, history: [] },
-                { id: "5D-011", name: "HUAMAN HERRERA, KEYRA SALOME", attendance: 0, history: [] },
-                { id: "5D-012", name: "HUAMAN TELLO, JACKELINE KSENYA", attendance: 0, history: [] },
-                { id: "5D-013", name: "IVALA PRADO, GENESIS VALERIA", attendance: 0, history: [] },
-                { id: "5D-014", name: "LEON GUTIERREZ, ROYER JOSI", attendance: 0, history: [] },
-                { id: "5D-015", name: "MAMANI PAUCAR, JERSON JAIR", attendance: 0, history: [] },
-                { id: "5D-016", name: "MANRIQUE QUISPE, ANGGELINA TATIANA", attendance: 0, history: [] },
-                { id: "5D-017", name: "MEDINA SAHUIÑA, JOHAN BBETO", attendance: 0, history: [] },
-                { id: "5D-018", name: "MEZA IPURRE, CRISTOPHER ALDAIR", attendance: 0, history: [] },
-                { id: "5D-019", name: "MOREYRA VASQUEZ, ZHAMIRA ABIGAIL", attendance: 0, history: [] },
-                { id: "5D-020", name: "MUNAYA MUÑOZ, CHRISTOPHER FERNANDO", attendance: 0, history: [] },
-                { id: "5D-021", name: "NEYRA BERROCAL, PIERO ARAMIS", attendance: 0, history: [] },
-                { id: "5D-022", name: "PACHECO GIRAO, JIMMY SEBASTIAN", attendance: 0, history: [] },
-                { id: "5D-023", name: "PEREZ RAMIREZ, JADE JOANET", attendance: 0, history: [] },
-                { id: "5D-024", name: "QUECAÑO VILCA, FRANCO EFRAIN", attendance: 0, history: [] },
-                { id: "5D-025", name: "QUIJANDRIA LOAYZA, JUNIOR JOSÈ", attendance: 0, history: [] },
-                { id: "5D-026", name: "QUISPE MARTINEZ, BERLIN LENIN", attendance: 0, history: [] },
-                { id: "5D-027", name: "QUISPE REYMUNDO, MARISOL CECILIA", attendance: 0, history: [] },
-                { id: "5D-028", name: "RAMOS LIMAYLLA, KIARA MINERVA", attendance: 0, history: [] },
-                { id: "5D-029", name: "RODRIGUEZ MALLQUE, VALERIA ISABEL", attendance: 0, history: [] },
-                { id: "5D-030", name: "SOTO MEZAS, ANTONIO FABIAN (FALTA EN SIAGIE)", attendance: 0, history: [] },
-                { id: "5D-031", name: "TIPO PAUYAC, AROM", attendance: 0, history: [] },
-                { id: "5D-032", name: "VILLACORTA CARDENAS, LEANDRO MARCOS", attendance: 0, history: [] },
-                { id: "5D-033", name: "YAMOJA TRILLO, MARYORI PATRICIA", attendance: 0, history: [] }
-            ]
+            // Tercer grado
+            "3A": generarEstudiantes("3A", 30),
+            "3B": generarEstudiantes("3B", 30),
+            "3C": generarEstudiantes("3C", 30),
+            "3D": generarEstudiantes("3D", 30),
+
+            // Cuarto grado
+            "4A": generarEstudiantes("4A", 28),
+            "4B": generarEstudiantes("4B", 28),
+            "4C": generarEstudiantes("4C", 28),
+            "4D": generarEstudiantes("4D", 28),
+
+            // Quinto grado
+            "5A": generarEstudiantes("5A", 25),
+            "5B": generarEstudiantes("5B", 25),
+            "5C": generarEstudiantes("5C", 25),
+            "5D": generarEstudiantes("5D", 25)
         };
+
         // Base de datos semanal independiente
         const weeklyDatabase = {};
 
@@ -1791,7 +1078,6 @@
         const scannerContainer = document.getElementById('scanner-container');
         const btnStart = document.getElementById('btn-start');
         const btnStop = document.getElementById('btn-stop');
-        const btnSwitch = document.getElementById('btn-switch');
         const btnReport = document.getElementById('btn-report');
         const studentList = document.getElementById('student-list');
         const searchInput = document.getElementById('search-input');
@@ -1823,7 +1109,6 @@
             // Event listeners
             btnStart.addEventListener('click', startScanner);
             btnStop.addEventListener('click', stopScanner);
-            btnSwitch.addEventListener('click', switchCamera);
             btnReport.addEventListener('click', sendReport);
             gradeSelector.addEventListener('change', updateSections);
             sectionSelector.addEventListener('change', updateClass);
@@ -1912,7 +1197,7 @@
             }, 3000);
         }
 
-        // Enviar reporte al profesor
+        // Enviar reporte al director
         function sendReport() {
             // Formatear mensaje
             let message = `📊 *Reporte General de Asistencia - ${today}*\n\n`;
@@ -1991,12 +1276,12 @@
             }
 
             // Enviar mensaje por WhatsApp
-            const phone = '51953017883'; // Número del profesor con código de país
+            const phone = '51995269612'; // Número del director con código de país
             const encodedMessage = encodeURIComponent(message);
             const whatsappUrl = `https://wa.me/${phone}?text=${encodedMessage}`;
 
             window.open(whatsappUrl, '_blank');
-            showNotification('Reporte general enviado al profesor', 'success');
+            showNotification('Reporte general enviado al director', 'success');
         }
 
         // Actualizar la hora actual
@@ -2004,32 +1289,6 @@
             const now = new Date();
             const timeString = now.toLocaleTimeString('es-ES');
             currentTimeEl.textContent = timeString;
-
-            // Verificar si estamos en horario escolar
-            const isWithinHours = isWithinSchoolHours(now);
-            if (isWithinHours) {
-                currentTimeEl.style.backgroundColor = '#2ec4b6';
-            } else {
-                currentTimeEl.style.backgroundColor = '#e71d36';
-            }
-        }
-
-        // Verificar si estamos dentro del horario escolar
-        function isWithinSchoolHours(date) {
-            const day = date.getDay(); // 0 = Domingo, 1 = Lunes, ..., 6 = Sábado
-            const hours = date.getHours();
-            const minutes = date.getMinutes();
-
-            // Verificar si es día de semana (lunes a viernes)
-            if (day >= 1 && day <= 5) {
-                // Verificar si está dentro del horario (8:00 - 15:30)
-                if ((hours > 8 && hours < 15) ||
-                    (hours === 8 && minutes >= 0) ||
-                    (hours === 15 && minutes <= 30)) {
-                    return true;
-                }
-            }
-            return false;
         }
 
         // Determinar el estado de asistencia (puntual, tardanza)
@@ -2041,7 +1300,7 @@
             if (hours < 8 || (hours === 8 && minutes <= 5)) {
                 return 'punctual';
             }
-            // Tardanza: después de las 8:05 pero antes de las 15:30
+            // Tardanza: después de las 8:05
             return 'late';
         }
 
@@ -2148,13 +1407,6 @@
 
             if (isScanning) return;
 
-            // Verificar horario escolar
-            const now = new Date();
-            if (!isWithinSchoolHours(now)) {
-                alert('Fuera del horario escolar. Solo se puede registrar de lunes a viernes de 8:00 am a 3:30 pm.');
-                return;
-            }
-
             try {
                 html5QrCode = new Html5Qrcode("scanner-container");
 
@@ -2192,26 +1444,6 @@
                 } catch (err) {
                     console.error("Error al detener el escáner:", err);
                 }
-            }
-        }
-
-        // Cambiar cámara
-        async function switchCamera() {
-            await stopScanner();
-
-            try {
-                const cameras = await Html5Qrcode.getCameras();
-                if (cameras && cameras.length > 1) {
-                    // Encontrar la siguiente cámara
-                    const currentIndex = cameras.findIndex(cam => cam.id === currentCameraId);
-                    const nextIndex = (currentIndex + 1) % cameras.length;
-                    currentCameraId = cameras[nextIndex].id;
-
-                    // Iniciar con la nueva cámara
-                    startScanner();
-                }
-            } catch (err) {
-                console.error("Error al cambiar de cámara:", err);
             }
         }
 
